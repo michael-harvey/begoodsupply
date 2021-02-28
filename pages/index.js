@@ -8,18 +8,39 @@ import types from '../data/types';
 export default function Home() {
   const [regionId, setRegionId] = useState(null);
   const [councilId, setCouncilId] = useState(null);
+  const [typeId, setTypeId] = useState(null);
   const [regionCouncils, setRegionCounsils] = useState([]);
   const [councilTypes, setCouncilTypes] = useState([]);
+  const [selectedType, setselectedType] = useState(null);
 
+  // filter councils dropdown to those within selected region
   useEffect(() => {
+    if (!regionId) {
+      return;
+    }
     setRegionCounsils(
       councils.filter((council) => council.regionId == regionId)
     );
   }, [regionId]);
 
+  // filter types dropdown to those within selected council
   useEffect(() => {
+    if (!councilId) {
+      return;
+    }
+
     setCouncilTypes(types.filter((type) => type.councilId == councilId));
   }, [councilId]);
+
+  useEffect(() => {
+    if (!typeId) {
+      return;
+    }
+
+    setselectedType(types.filter((type) => type.id == typeId)[0]);
+  }, [typeId]);
+
+  console.log(selectedType);
 
   return (
     <div>
@@ -32,6 +53,8 @@ export default function Home() {
           regionId: {regionId}
           <br />
           councilId: {councilId}
+          <br />
+          typeId: {typeId}
         </h1>
         <div>
           <label htmlFor="region">Region</label>
@@ -69,11 +92,30 @@ export default function Home() {
           </select>
 
           {/* type */}
-          {councilTypes.map((type) => (
-            <p key={type.id}>
-              {type.name}: {type.value}
-            </p>
-          ))}
+          <label htmlFor="type">Reclycling type</label>
+
+          <select
+            id="type"
+            name="type"
+            onChange={(e) => setTypeId(e.target.value)}
+            disabled={!councilTypes.length}
+          >
+            <option value="">Select a type</option>
+            {councilTypes.length &&
+              councilTypes.map((type) => (
+                <option key={type.id} value={type.id}>
+                  {type.name}
+                </option>
+              ))}
+          </select>
+
+          {/* selectedType */}
+          {selectedType && (
+            <div>
+              <h3>{selectedType.name}</h3>
+              <p>{selectedType.value}</p>
+            </div>
+          )}
         </div>
       </main>
 
