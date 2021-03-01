@@ -24,6 +24,7 @@ body {
 .container {
   max-width: 100rem;
   margin: 5rem auto;
+  padding: 0 2rem;
 }
 
 .header {
@@ -31,6 +32,17 @@ body {
   justify-content: center;
 }
 
-label {
+.content {
+  display: flex;
+  flex-direction: column;
+}
+
+.field {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.field__label {
   display: block;
+  margin-bottom: 10px;
 }
