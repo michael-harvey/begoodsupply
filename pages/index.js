@@ -40,26 +40,25 @@ export default function Home() {
     setselectedType(types.filter((type) => type.id == typeId)[0]);
   }, [typeId]);
 
-  console.log(selectedType);
-
   return (
-    <div>
+    <div className="container">
       <Head>
         <title>Begoodsupply</title>
       </Head>
 
-      <main>
-        <h1>
-          regionId: {regionId}
-          <br />
-          councilId: {councilId}
-          <br />
-          typeId: {typeId}
-        </h1>
-        <div>
-          <label htmlFor="region">Region</label>
+      <header className="header">
+        <img className="header__logo" src="/logo.png" alt="begoodsupply logo" />
+      </header>
 
+      <main className="content">
+        <h1>Where does your waste go?</h1>
+
+        <div className="field">
           {/* region */}
+          <label htmlFor="region" className="field__label">
+            Which region do you live in?
+          </label>
+
           <select
             id="region"
             name="region"
@@ -72,15 +71,19 @@ export default function Home() {
               </option>
             ))}
           </select>
+        </div>
 
+        <div className="field">
           {/* council */}
-          <label htmlFor="council">Council</label>
+          <label htmlFor="council" className="field__label">
+            Which council do you belong to?
+          </label>
 
           <select
             id="council"
             name="council"
             onChange={(e) => setCouncilId(e.target.value)}
-            disabled={!regionCouncils.length}
+            disabled={!regionCouncils.length && !regionId}
           >
             <option value="">Select a Council</option>
             {regionCouncils.length &&
@@ -90,17 +93,21 @@ export default function Home() {
                 </option>
               ))}
           </select>
+        </div>
 
+        <div className="field">
           {/* type */}
-          <label htmlFor="type">Reclycling type</label>
+          <label htmlFor="type" className="field__label">
+            What type of waste are you disposing?
+          </label>
 
           <select
             id="type"
             name="type"
             onChange={(e) => setTypeId(e.target.value)}
-            disabled={!councilTypes.length}
+            disabled={!councilTypes.length && !councilId}
           >
-            <option value="">Select a type</option>
+            <option value="">Select a Type</option>
             {councilTypes.length &&
               councilTypes.map((type) => (
                 <option key={type.id} value={type.id}>
@@ -108,15 +115,15 @@ export default function Home() {
                 </option>
               ))}
           </select>
-
-          {/* selectedType */}
-          {selectedType && (
-            <div>
-              <h3>{selectedType.name}</h3>
-              <p>{selectedType.value}</p>
-            </div>
-          )}
         </div>
+
+        {/* selectedType */}
+        {typeId && selectedType && (
+          <div>
+            <h3>{selectedType.name}</h3>
+            <p>{selectedType.value}</p>
+          </div>
+        )}
       </main>
 
       <footer></footer>
