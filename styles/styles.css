@@ -3,6 +3,7 @@
 :root {
   --background: #b2d66f;
   --light: #ffffff;
+  --dark: #606060;
 }
 
 * {
@@ -18,11 +19,15 @@ body {
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   background-color: var(--background);
   font-size: 18px;
-  color: white;
+  color: var(--dark);
+}
+
+.type--light {
+  color: var(--light);
 }
 
 .container {
-  max-width: 100rem;
+  max-width: 50rem;
   margin: 5rem auto;
   padding: 0 2rem;
 }
@@ -38,11 +43,21 @@ body {
 }
 
 .field {
+  position: relative;
   width: 100%;
-  margin-bottom: 20px;
+  margin-bottom: 2rem;
 }
 
 .field__label {
   display: block;
-  margin-bottom: 10px;
+  margin-bottom: 1rem;
+}
+
+select {
+  appearance: none;
+  border: none;
+  width: 100%;
+  padding: 2rem;
+  margin-bottom: 1rem;
+  color: inherit;
 }

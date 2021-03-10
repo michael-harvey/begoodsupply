@@ -51,13 +51,13 @@ export default function Home() {
       </header>
 
       <main className="content">
-        <h1>Where does your waste go?</h1>
+        <h1 className="type--light">Where does my waste go?</h1>
 
         <div className="field">
           {/* region */}
-          <label htmlFor="region" className="field__label">
+          {/* <label htmlFor="region" className="field__label">
             Which region do you live in?
-          </label>
+          </label> */}
 
           <select
             id="region"
@@ -75,15 +75,15 @@ export default function Home() {
 
         <div className="field">
           {/* council */}
-          <label htmlFor="council" className="field__label">
+          {/* <label htmlFor="council" className="field__label">
             Which council do you belong to?
-          </label>
+          </label> */}
 
           <select
             id="council"
             name="council"
             onChange={(e) => setCouncilId(e.target.value)}
-            disabled={!regionCouncils.length && !regionId}
+            disabled={!regionCouncils.length || !regionId}
           >
             <option value="">Select a Council</option>
             {regionCouncils.length &&
@@ -97,15 +97,15 @@ export default function Home() {
 
         <div className="field">
           {/* type */}
-          <label htmlFor="type" className="field__label">
+          {/* <label htmlFor="type" className="field__label">
             What type of waste are you disposing?
-          </label>
+          </label> */}
 
           <select
             id="type"
             name="type"
             onChange={(e) => setTypeId(e.target.value)}
-            disabled={!councilTypes.length && !councilId}
+            disabled={!councilTypes.length || !councilId}
           >
             <option value="">Select a Type</option>
             {councilTypes.length &&
