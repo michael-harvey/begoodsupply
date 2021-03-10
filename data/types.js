@@ -1,16 +1,4 @@
 export default [
-  // {
-  //   id: 1,
-  //   councilId: 1,
-  //   name: 'Kerbside Collection Contractor',
-  //   value: '011-NZW-KS',
-  // },
-  // {
-  //   id: 2,
-  //   councilId: 1,
-  //   name: 'Sort/Process contractor',
-  //   value: '001-WLG-KS',
-  // },
   {
     id: 1,
     councilId: 1,
